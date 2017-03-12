@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/volleyball"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/player_1"
+            style="@style/playerStyleVoll"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="@string/player_1" />
+
+        <EditText
+            android:id="@+id/player_2"
+            style="@style/playerStyleVoll"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="@string/player_2" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <LinearLayout style="@style/LayoutVer">
+
+                <TextView
+                    android:id="@+id/score_1"
+                    style="@style/textVoll"
+                    android:text="0" />
+
+                <TextView
+                    android:id="@+id/set_1"
+                    style="@style/textVoll"
+                    android:text="0" />
+
+                <Button
+                    style="@style/button"
+                    android:onClick="Count1"
+                    android:text="@string/add_1" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutVer">
+
+                <TextView
+                    style="@style/textVoll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Score" />
+
+                <TextView
+                    style="@style/textVoll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Set" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutVer">
+
+
+                <TextView
+                    android:id="@+id/score_2"
+                    style="@style/textVoll"
+                    android:text="0" />
+
+                <TextView
+                    android:id="@+id/set_2"
+                    style="@style/textVoll"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/player_2_add_1"
+                    style="@style/button"
+                    android:onClick="Count2"
+                    android:text="@string/add_1" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"></LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LayoutVer2"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/reset"
+        style="@style/button"
+        android:text="@string/reset" />
+
+    <Button
+        android:id="@+id/back"
+        style="@style/button"
+        android:text="@string/Back" />
+
+</LinearLayout>
