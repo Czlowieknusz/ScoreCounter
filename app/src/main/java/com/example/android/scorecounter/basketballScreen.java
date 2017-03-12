@@ -43,51 +43,8 @@ public class basketballScreen extends Activity implements View.OnClickListener {
         startCount = (Button) findViewById(R.id.startButton);
         togbtn = (ToggleButton) findViewById(R.id.togBtn);
         cancelButton = (Button) findViewById(R.id.cancelBtn);
-
         cancelButton.setEnabled(false);
         togbtn.setEnabled(false);
-
-        /*
-        if clicked one of the countDown timer buttons
-         */
-        startCount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                isStarted = true;
-                startCount.setEnabled(false);
-                cancelButton.setEnabled(true);
-                togbtn.setEnabled(true);
-
-                isPaused = false;
-                isCanceled = false;
-                Ticker();
-            }
-        });
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                isCanceled = true;
-                textViewTime.setText("10:00");
-                startCount.setEnabled(true);
-                togbtn.setEnabled(false);
-                togbtn.setChecked(false);
-                isPaused = isStarted = false;
-                cancelButton.setEnabled(false);
-                remainingTime = 600000;
-            }
-        });
-        togbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (togbtn.isChecked()) {
-                    isPaused = true;
-                } else {
-                    isPaused = false;
-                    // starting onTick function displaying passing time of a match
-                    Ticker();
-                }
-            }
-        });
     }
 
 
@@ -106,7 +63,7 @@ public class basketballScreen extends Activity implements View.OnClickListener {
     // displaying parts played
     private void showPartsPlayed() {
         TextView t = (TextView) findViewById(R.id.partsPlayed);
-        t.setText("Parts played: " + String.valueOf(partsPlayed));
+        t.setText(getString(R.string.parts_played_no_value) + String.valueOf(partsPlayed));
     }
 
     // in case of rotating func saving scores and time played
@@ -142,7 +99,7 @@ public class basketballScreen extends Activity implements View.OnClickListener {
             togbtn.setEnabled(false);
             cancelButton.setEnabled(false);
             startCount.setEnabled(true);
-            textViewTime.setText("10:00");
+            textViewTime.setText(R.string.time_0);
         } else {
             Ticker();
             startCount.setEnabled(false);
@@ -203,7 +160,7 @@ public class basketballScreen extends Activity implements View.OnClickListener {
     }
 
     /*
-    Lower buttons
+    Buttons and countDown timer buttons
      */
     public void onClick(View v) {
         switch (v.getId()) {
@@ -212,10 +169,38 @@ public class basketballScreen extends Activity implements View.OnClickListener {
                 actualScore1 = 0;
                 display2(0);
                 actualScore2 = 0;
-                partsPlayed=0;
+                partsPlayed = 0;
                 break;
             case R.id.back:
                 finish();
+                break;
+            case R.id.startButton:
+                isStarted = true;
+                startCount.setEnabled(false);
+                cancelButton.setEnabled(true);
+                togbtn.setEnabled(true);
+                isPaused = false;
+                isCanceled = false;
+                Ticker();
+                break;
+            case R.id.cancelBtn:
+                isCanceled = true;
+                textViewTime.setText(R.string.time_0);
+                startCount.setEnabled(true);
+                togbtn.setEnabled(false);
+                togbtn.setChecked(false);
+                isPaused = isStarted = false;
+                cancelButton.setEnabled(false);
+                remainingTime = 600000;
+                break;
+            case R.id.togBtn:
+                if (togbtn.isChecked()) {
+                    isPaused = true;
+                } else {
+                    isPaused = false;
+                    // starting onTick function displaying passing time of a match
+                    Ticker();
+                }
                 break;
         }
     }
@@ -248,10 +233,10 @@ public class basketballScreen extends Activity implements View.OnClickListener {
     // Ticker method counting passing time
     private void Ticker() {
         long millisInFuture;
-        if (remainingTime != 0 || remainingTime != 600000) {
-            millisInFuture = remainingTime;
-        } else {
+        if (remainingTime == 0 || remainingTime == 600000) {
             millisInFuture = 600000;
+        } else {
+            millisInFuture = remainingTime;
         }
         long countDownInterval = 1000;
         new CountDownTimer(millisInFuture, countDownInterval) {
@@ -270,7 +255,7 @@ public class basketballScreen extends Activity implements View.OnClickListener {
 
             @Override
             public void onFinish() {
-                textViewTime.setText("00:00");
+                textViewTime.setText(R.string.time_0);
                 partsPlayed++;
                 checkIfEnd();
             }

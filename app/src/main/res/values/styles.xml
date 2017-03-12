@@ -12,7 +12,7 @@
 
     <style name="title">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">@dimen/size30Sp</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:gravity">center_horizontal</item>
     </style>
@@ -20,14 +20,14 @@
     <style name="titleVoll">
         <item name="android:layout_width">match_parent</item>
         <item name="android:textColor">@android:color/black</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">@dimen/size30Sp</item>
         <item name="android:gravity">center_horizontal</item>
     </style>
 
     <style name="playerStyleVoll">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">@dimen/size20Sp</item>
     </style>
 
 
@@ -35,7 +35,7 @@
         <item name="android:gravity">center_horizontal</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">@dimen/size30Sp</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
 
@@ -49,7 +49,7 @@
         <item name="android:gravity">center_horizontal</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">@dimen/size30Sp</item>
         <item name="android:textColor">@android:color/black</item>
     </style>
 
@@ -66,16 +66,15 @@
     </style>
 
     <style name="LayoutVer2">
-        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:padding">20dp</item>
+        <item name="android:padding">@dimen/size20Dp</item>
     </style>
 
     <style name="winnerWindow">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:textSize">20sp</item>1
+        <item name="android:textSize">@dimen/size20Sp</item>1
     </style>
 </resources>

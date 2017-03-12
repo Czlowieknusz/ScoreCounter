@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonBasketball.setOnClickListener(this);
         View buttonVolleyball = findViewById(R.id.volleyball);
         buttonVolleyball.setOnClickListener(this);
+        setTitle("Score counter!");
     }
 
     public void onClick(View v) {

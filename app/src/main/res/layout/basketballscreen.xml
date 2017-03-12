@@ -5,7 +5,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/rsz_basketball"
         android:orientation="vertical">
 
@@ -18,7 +18,7 @@
                 android:id="@+id/startButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="start" />
+                android:text="@string/start" />
 
             <TextView
                 android:id="@+id/time"
@@ -28,13 +28,13 @@
                 android:gravity="center_horizontal"
                 android:text="@string/partTime"
                 android:textColor="@android:color/white"
-                android:textSize="20sp" />
+                android:textSize="@dimen/TxtSize20" />
 
             <Button
                 android:id="@+id/cancelBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cancel" />
+                android:text="@string/cancel" />
 
             <ToggleButton
                 android:id="@+id/togBtn"
@@ -66,13 +66,14 @@
                     android:id="@+id/player_1"
                     style="@style/textBask"
                     android:focusableInTouchMode="true"
+                    android:inputType="text"
                     android:imeOptions="actionDone"
                     android:text="@string/player_1" />
 
                 <TextView
                     android:id="@+id/score_1"
                     style="@style/textBask"
-                    android:text="0" />
+                    android:text="@string/text_0" />
 
                 <Button
                     style="@style/button"
@@ -99,12 +100,13 @@
                     style="@style/textBask"
                     android:focusableInTouchMode="true"
                     android:imeOptions="actionDone"
+                    android:inputType="text"
                     android:text="@string/player_2" />
 
                 <TextView
                     android:id="@+id/score_2"
                     style="@style/textBask"
-                    android:text="0" />
+                    android:text="@string/text_0" />
 
                 <Button
                     android:id="@+id/player_2_add_1"
@@ -126,7 +128,8 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout style="@style/LayoutVer2">
+        <LinearLayout style="@style/LayoutVer2"
+            android:layout_height="wrap_content">
 
             <Button
                 android:id="@+id/reset"
@@ -141,7 +144,7 @@
             <TextView
                 android:id="@+id/winner"
                 style="@style/textBask"
-                android:layout_marginTop="40dp" />
+                android:layout_marginTop="@dimen/size40Dp" />
 
 
         </LinearLayout>
