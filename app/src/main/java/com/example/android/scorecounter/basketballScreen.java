@@ -39,31 +39,17 @@ public class basketballScreen extends Activity implements View.OnClickListener {
         Reset.setOnClickListener(this);
         View Back = findViewById(R.id.back);
         Back.setOnClickListener(this);
+        View StartCount = findViewById(R.id.startButton);
+        StartCount.setOnClickListener(this);
+        View Togbtn = findViewById(R.id.togBtn);
+        Togbtn.setOnClickListener(this);
+        View CancelBtn = findViewById(R.id.cancelBtn);
+        CancelBtn.setOnClickListener(this);
         textViewTime = (TextView) findViewById(R.id.time);
+        //View textViewTime = findViewById(R.id.time);
         startCount = (Button) findViewById(R.id.startButton);
         togbtn = (ToggleButton) findViewById(R.id.togBtn);
         cancelButton = (Button) findViewById(R.id.cancelBtn);
-        cancelButton.setEnabled(false);
-        togbtn.setEnabled(false);
-    }
-
-
-    // called after countDown timer reaches 0
-    private void checkIfEnd() {
-        if (partsPlayed == 4) {
-            displayWinnerWindow();
-        }
-        startCount.setEnabled(true);
-        togbtn.setEnabled(false);
-        togbtn.setChecked(false);
-        cancelButton.setEnabled(false);
-        showPartsPlayed();
-    }
-
-    // displaying parts played
-    private void showPartsPlayed() {
-        TextView t = (TextView) findViewById(R.id.partsPlayed);
-        t.setText(getString(R.string.parts_played_no_value) + String.valueOf(partsPlayed));
     }
 
     // in case of rotating func saving scores and time played
@@ -99,7 +85,7 @@ public class basketballScreen extends Activity implements View.OnClickListener {
             togbtn.setEnabled(false);
             cancelButton.setEnabled(false);
             startCount.setEnabled(true);
-            textViewTime.setText(R.string.time_0);
+            textViewTime.setText(R.string.time_10);
         } else {
             Ticker();
             startCount.setEnabled(false);
@@ -111,6 +97,69 @@ public class basketballScreen extends Activity implements View.OnClickListener {
             togbtn.isChecked();
         }
     }
+
+
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.reset:
+                display1(0);
+                actualScore1 = 0;
+                display2(0);
+                actualScore2 = 0;
+                partsPlayed = 0;
+                break;
+            case R.id.back:
+                finish();
+                break;
+            case R.id.startButton:
+                isStarted = true;
+                cancelButton.setEnabled(true);
+                togbtn.setEnabled(true);
+                isPaused = false;
+                isCanceled = false;
+                Ticker();
+                startCount.setEnabled(false);
+                break;
+            case R.id.cancelBtn:
+                isCanceled = true;
+                textViewTime.setText(R.string.time_10);
+                startCount.setEnabled(true);
+                togbtn.setEnabled(false);
+                togbtn.setChecked(false);
+                isPaused = isStarted = false;
+                cancelButton.setEnabled(false);
+                remainingTime = 600000;
+                break;
+            case R.id.togBtn:
+                if (togbtn.isChecked()) {
+                    isPaused = true;
+                } else {
+                    isPaused = false;
+                    // starting onTick function displaying passing time of a match
+                    Ticker();
+                }
+                break;
+        }
+    }
+
+    // called after countDown timer reaches 0
+    private void checkIfEnd() {
+        if (partsPlayed == 4) {
+            displayWinnerWindow();
+        }
+        startCount.setEnabled(true);
+        togbtn.setEnabled(false);
+        togbtn.setChecked(false);
+        cancelButton.setEnabled(false);
+        showPartsPlayed();
+    }
+
+    // displaying parts played
+    private void showPartsPlayed() {
+        TextView t = (TextView) findViewById(R.id.partsPlayed);
+        t.setText(getString(R.string.parts_played_no_value) + String.valueOf(partsPlayed));
+    }
+
 
     /*
     Adding points
@@ -162,48 +211,6 @@ public class basketballScreen extends Activity implements View.OnClickListener {
     /*
     Buttons and countDown timer buttons
      */
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.reset:
-                display1(0);
-                actualScore1 = 0;
-                display2(0);
-                actualScore2 = 0;
-                partsPlayed = 0;
-                break;
-            case R.id.back:
-                finish();
-                break;
-            case R.id.startButton:
-                isStarted = true;
-                startCount.setEnabled(false);
-                cancelButton.setEnabled(true);
-                togbtn.setEnabled(true);
-                isPaused = false;
-                isCanceled = false;
-                Ticker();
-                break;
-            case R.id.cancelBtn:
-                isCanceled = true;
-                textViewTime.setText(R.string.time_0);
-                startCount.setEnabled(true);
-                togbtn.setEnabled(false);
-                togbtn.setChecked(false);
-                isPaused = isStarted = false;
-                cancelButton.setEnabled(false);
-                remainingTime = 600000;
-                break;
-            case R.id.togBtn:
-                if (togbtn.isChecked()) {
-                    isPaused = true;
-                } else {
-                    isPaused = false;
-                    // starting onTick function displaying passing time of a match
-                    Ticker();
-                }
-                break;
-        }
-    }
 
     // displaying window showing the winner at the end of 4th part
     private void displayWinnerWindow() {
@@ -233,7 +240,7 @@ public class basketballScreen extends Activity implements View.OnClickListener {
     // Ticker method counting passing time
     private void Ticker() {
         long millisInFuture;
-        if (remainingTime == 0 || remainingTime == 600000) {
+        if (remainingTime == 0) {
             millisInFuture = 600000;
         } else {
             millisInFuture = remainingTime;
@@ -255,7 +262,7 @@ public class basketballScreen extends Activity implements View.OnClickListener {
 
             @Override
             public void onFinish() {
-                textViewTime.setText(R.string.time_0);
+                textViewTime.setText(R.string.time_10);
                 partsPlayed++;
                 checkIfEnd();
             }

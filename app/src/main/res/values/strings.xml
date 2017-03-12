@@ -26,7 +26,7 @@
     <string name="text_0">0</string>
     <string name="winner_window_text">No data downloaded</string>
     <string name="parts_played_no_value">Parts played:</string>
-    <string name="time_0">00:00</string>
+    <string name="time_10">10:00</string>
     <string name="score">Score</string>
     <string name="set">Set</string>
     <string name="cancel">Cancel</string>
