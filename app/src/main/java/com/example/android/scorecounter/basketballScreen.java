@@ -46,7 +46,6 @@ public class basketballScreen extends Activity implements View.OnClickListener {
         View CancelBtn = findViewById(R.id.cancelBtn);
         CancelBtn.setOnClickListener(this);
         textViewTime = (TextView) findViewById(R.id.time);
-        //View textViewTime = findViewById(R.id.time);
         startCount = (Button) findViewById(R.id.startButton);
         togbtn = (ToggleButton) findViewById(R.id.togBtn);
         cancelButton = (Button) findViewById(R.id.cancelBtn);
